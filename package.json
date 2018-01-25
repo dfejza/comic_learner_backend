@@ -37,7 +37,9 @@
     "express": "^4.13.3",
     "morgan": "^1.8.0",
     "mysql": "^2.15.0",
-    "resource-router-middleware": "^0.6.0"
+    "mysql2": "^1.5.1",
+    "resource-router-middleware": "^0.6.0",
+    "sequelize": "^4.32.1"
   },
   "devDependencies": {
     "babel-cli": "^6.9.0",

@@ -7,7 +7,6 @@ import initializeDb from './db';
 import middleware from './middleware';
 import api from './api';
 import config from './config.json';
-import mysql from 'mysql';
 
 let app = express();
 app.server = http.createServer(app);
@@ -29,14 +28,6 @@ app.use(bodyParser.json({
 // connect to db
 initializeDb( db => {
 
-	// Connect to SQL
-	var connection = mysql.createConnection({
-		host     : 'localhost',
-		user     : 'teltech',
-		password : 'teltech',
-		database : 'comiclearner'
-	  });
-
 	// internal middleware
 	app.use(middleware({ config, db }));
 
@@ -50,17 +41,3 @@ initializeDb( db => {
 
 export default app;
 
-
-/*
-CREATE TABLE cards (
-	userId VARCHAR(50) NOT NULL,
-	front VARCHAR(250) NOT NULL,
-	back blob NOT NULL,
-	created DATETIME NOT NULL,
-	intervalModifier SMALLINT NOT NULL,
-	numlapses SMALLINT NOT NULL,
-	numReviews SMALLINT NOT NULL,
-	due_date date NOT NULL,
-	PRIMARY KEY (userId, created)
-);
-*/
