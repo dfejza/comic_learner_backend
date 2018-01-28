@@ -1,7 +1,7 @@
 
 'use strict';
 
-const env = {
+const sqlEnv = {
   DATABASE_NAME: process.env.DATABASE_NAME || 'comiclearner',
   DATABASE_HOST: process.env.DATABASE_HOST || 'localhost',
   DATABASE_USERNAME: process.env.DATABASE_USERNAME || 'teltech',
@@ -11,4 +11,5 @@ const env = {
   NODE_ENV: process.env.NODE_ENV || 'development',
 };
 
-module.exports = env;
+
+module.exports = {sqlEnv};

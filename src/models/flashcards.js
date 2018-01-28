@@ -48,8 +48,8 @@ module.exports = (sequelize, DataTypes) => {
 /*
 CREATE TABLE flashcards (
 	user_id VARCHAR(50) NOT NULL,
-	front VARCHAR(250) NOT NULL,
-	back blob NOT NULL,
+	front TEXT NOT NULL,
+	back TEXT NOT NULL,
 	created_at DATETIME NOT NULL,
 	interval_modifier SMALLINT NOT NULL,
 	num_lapses SMALLINT NOT NULL,

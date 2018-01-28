@@ -1,12 +1,12 @@
 const Sequelize = require('sequelize');
 const DataTypes = Sequelize.DataTypes;
-const env = require('./env');
+const {sqlEnv} = require('./env');
 export default callback => {
 
 	// Set up the ORM to connect to SQL server
 	// non-production credentials
-	const sequelize = new Sequelize(env.DATABASE_NAME, env.DATABASE_USERNAME, env.DATABASE_PASSWORD, {
-		dialect: env.DATABASE_DIALECT,
+	const sequelize = new Sequelize(sqlEnv.DATABASE_NAME, sqlEnv.DATABASE_USERNAME, sqlEnv.DATABASE_PASSWORD, {
+		dialect: sqlEnv.DATABASE_DIALECT,
 		define: {
 		  underscored: true
 		}

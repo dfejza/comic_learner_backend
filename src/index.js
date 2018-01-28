@@ -7,6 +7,7 @@ import initializeDb from './db';
 import middleware from './middleware';
 import api from './api';
 import config from './config.json';
+import firebase from "./firebase"
 
 let app = express();
 app.server = http.createServer(app);
@@ -28,8 +29,11 @@ app.use(bodyParser.json({
 // connect to db
 initializeDb( db => {
 
+	// Firebase
+	var firebaseAdmin = firebase();
+
 	// internal middleware
-	app.use(middleware({ config, db }));
+	app.use(middleware({ config, db, firebaseAdmin}));
 
 	// api router
 	app.use('/api', api({ config, db }));

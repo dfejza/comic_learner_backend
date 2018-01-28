@@ -10,10 +10,11 @@ export default ({ config, db }) => {
 
     router.post('/addCard', function (req, res) {
         // TODO sanitize the input
+        console.log(req.body.idToken);
 
         // Add the input to the DB
         db.flashcards.create({
-            user_id: req.body.email,
+            user_id: req.body.idToken,
             front: req.body.front,
             back: req.body.back,
             created_at: new Date().toISOString().slice(0, 19).replace('T', ' '),
