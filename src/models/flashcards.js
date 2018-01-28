@@ -7,11 +7,11 @@ module.exports = (sequelize, DataTypes) => {
       required: true
     },
     front: {
-      type: DataTypes.STRING, //change to blob
+      type: DataTypes.TEXT, //change to blob
       required: true
     },
     back: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
       required: true
     },
     created_at: {

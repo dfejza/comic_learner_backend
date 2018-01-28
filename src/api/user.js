@@ -13,7 +13,7 @@ export default ({ config, db }) => {
 
         // Add the input to the DB
         db.flashcards.create({
-            user_id: req.body.id,
+            user_id: req.body.email,
             front: req.body.front,
             back: req.body.back,
             created_at: new Date().toISOString().slice(0, 19).replace('T', ' '),
