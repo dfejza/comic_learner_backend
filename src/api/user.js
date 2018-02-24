@@ -1,7 +1,9 @@
 
 
-export default ({ config, db }) => {
-    
+
+
+
+module.exports = ( config, db ) =>{
     var router = require('express').Router();
 
     router.get('/', function(req, res) {
@@ -10,13 +12,15 @@ export default ({ config, db }) => {
 
     router.post('/addCard', function (req, res) {
         // TODO sanitize the input
-        console.log(req.body.idToken);
 
         // Add the input to the DB
         db.flashcards.create({
             user_id: req.body.idToken,
             front: req.body.front,
             back: req.body.back,
+            manga : req.body.manga,
+            volume : req.body.volume,
+            page : req.body.page,
             created_at: new Date().toISOString().slice(0, 19).replace('T', ' '),
             interval_modifier: 1,
             num_lapses: 0,
@@ -25,8 +29,25 @@ export default ({ config, db }) => {
         }).
         then(newCard => {
             res.json(newCard);
+        }, err =>{
+            console.log(err);
+            res.json(err);
         });
 
+    });
+
+    router.get('/getAllCards', function (req, res) {
+        // TODO sanitize the input
+        db.flashcards.findAll({
+            where: {
+                user_id : req.body.idToken
+            }
+        }).then(cards => {
+            res.json(cards);
+        }, err =>{
+            console.log(err);
+            res.json(err);
+        });
     });
 
     // GET /signup/info

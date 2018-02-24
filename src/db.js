@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 const DataTypes = Sequelize.DataTypes;
 const {sqlEnv} = require('./env');
-export default callback => {
+module.exports = callback => {
 
 	// Set up the ORM to connect to SQL server
 	// non-production credentials

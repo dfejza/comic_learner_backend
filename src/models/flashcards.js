@@ -14,6 +14,18 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.TEXT,
       required: true
     },
+    manga: {
+      type: DataTypes.STRING,
+      required: true
+    },
+    volume: {
+      type: DataTypes.STRING,
+      required: true
+    },
+    page: {
+      type: DataTypes.STRING,
+      required: true
+    },
     created_at: {
       type: DataTypes.DATE,
       allowNull: false
@@ -50,13 +62,16 @@ CREATE TABLE flashcards (
 	user_id VARCHAR(50) NOT NULL,
 	front TEXT NOT NULL,
 	back TEXT NOT NULL,
-	created_at DATETIME NOT NULL,
+	manga VARCHAR(50) NOT NULL,
+	volume VARCHAR(50) NOT NULL,
+	page VARCHAR(50) NOT NULL,
+	created_at timestamp NOT NULL,
 	interval_modifier SMALLINT NOT NULL,
 	num_lapses SMALLINT NOT NULL,
 	numm_reviews SMALLINT NOT NULL,
 	due_date date NOT NULL,
-	updated_at date,
-	deleted_at date,
+	updated_at timestamp,
+	deleted_at timestamp,
 	PRIMARY KEY (user_id, created_at)
 );
 */

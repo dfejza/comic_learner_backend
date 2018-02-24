@@ -1,15 +1,19 @@
 import { Router } from 'express';
 import * as admin from 'firebase-admin';
 
-export default ({ config, db, firebaseAdmin }) => {
+module.exports = function(config, db, firebaseAdmin){
 	let routes = Router();
+	
 
 	// Validate the user token here on all api requests
 	routes.use(function(req, res, next) {
+
 		// Validate the user
-		var idToken = req.body.idToken;
-		//console.log(idToken);
-		admin.auth().verifyIdToken(idToken)
+		// If POST, look for ID in body
+		// If GET, look for ID in params
+		var idToken = ( typeof req.body.idToken !== 'undefined' ? req.body.idToken : req.query.idToken );
+		if(typeof idToken !== 'undefined'){
+			admin.auth().verifyIdToken(idToken)
 			.then(function(decodedToken) {
 				var uid = decodedToken.uid;
 
@@ -18,12 +22,15 @@ export default ({ config, db, firebaseAdmin }) => {
 
 				// Continue
 				next(); 
-
 			}).catch(function(error) {
 				console.log(error);
 				// Handle error TODO frontend
-   	 			res.status(500).send({ error: 'INVALID_TOKEN' })
+					res.status(500).send({ error: 'INVALID_TOKEN' })
 			});
+		}
+		else{
+			res.status(500).send({ error: 'INVALID_TOKEN' })
+		}
 	});
 
 	return routes;

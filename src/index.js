@@ -33,15 +33,15 @@ initializeDb( db => {
 	var firebaseAdmin = firebase();
 
 	// internal middleware
-	app.use(middleware({ config, db, firebaseAdmin}));
+	app.use(middleware(config, db, firebaseAdmin));
 
 	// api router
-	app.use('/api', api({ config, db }));
+	app.use('/api', api(config, db));
 
 	app.server.listen(process.env.PORT || config.port, () => {
 		console.log(`Started on port ${app.server.address().port}`);
 	});
 });
 
-export default app;
+module.exports = app;
 
