@@ -10,6 +10,7 @@ module.exports = ( config, db ) =>{
         res.json({'foo':'bar'});
     });
 
+    // Add the card to the DB
     router.post('/addCard', function (req, res) {
         // TODO sanitize the input
 
@@ -33,9 +34,9 @@ module.exports = ( config, db ) =>{
             console.log(err);
             res.json(err);
         });
-
     });
 
+    // Get all cards from the DB
     router.get('/getAllCards', function (req, res) {
         // TODO sanitize the input
         db.flashcards.findAll({
@@ -48,6 +49,24 @@ module.exports = ( config, db ) =>{
             console.log(err);
             res.json(err);
         });
+    });
+
+    // Delete specified cards from the DB
+    router.post('/deleteCards', function (req, res) {
+        console.log(req.body.deleteArray);
+        // TODO sanitize the input
+        db.flashcards.destroy({
+            where: {
+                user_id : req.body.idToken,
+                created_at : req.body.deleteArray
+            }
+        }).then(cards => {
+            res.json(cards);
+        }, err =>{
+            console.log(err);
+            res.json(err);
+        });
+
     });
 
     // GET /signup/info

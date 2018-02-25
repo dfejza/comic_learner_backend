@@ -27,7 +27,7 @@ module.exports = (sequelize, DataTypes) => {
       required: true
     },
     created_at: {
-      type: DataTypes.DATE,
+      type: DataTypes.STRING,
       allowNull: false
     },
     interval_modifier: {
@@ -65,7 +65,7 @@ CREATE TABLE flashcards (
 	manga VARCHAR(50) NOT NULL,
 	volume VARCHAR(50) NOT NULL,
 	page VARCHAR(50) NOT NULL,
-	created_at timestamp NOT NULL,
+	created_at VARCHAR(20) NOT NULL,
 	interval_modifier SMALLINT NOT NULL,
 	num_lapses SMALLINT NOT NULL,
 	numm_reviews SMALLINT NOT NULL,
